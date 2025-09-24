@@ -1,40 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Agent Chat Frontend
 
-## Getting Started
+A Next.js frontend for the multi-tool agent chat application.
 
-First, run the development server:
+## Features
 
+- Real-time chat interface with AI agent
+- API proxy to handle CORS issues with backend
+- Ready for deployment to Vercel or Render
+
+## Local Development
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Start the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Deployment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Vercel (Recommended)
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push this repo to GitHub
+2. Connect your GitHub repo to Vercel
+3. Set environment variable:
+   - `BACKEND_URL`: Your backend API URL (e.g., `https://your-backend.render.com`)
+4. Deploy automatically
 
-## Learn More
+### Render
 
-To learn more about Next.js, take a look at the following resources:
+1. Push this repo to GitHub
+2. Create a new Web Service on Render
+3. Connect your GitHub repo
+4. Set:
+   - Build Command: `npm run build`
+   - Start Command: `npm start`
+   - Environment variable: `BACKEND_URL` = your backend URL
+5. Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `BACKEND_URL`: The URL of your backend API (without trailing slash)
 
-## Deploy on Vercel
+## API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The frontend includes a proxy API route at `/api/chat` that forwards requests to your backend to avoid CORS issues.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## Backend Integration
+
+Update the `pages/api/chat.js` file to point to your deployed backend URL instead of `localhost:8000`.
