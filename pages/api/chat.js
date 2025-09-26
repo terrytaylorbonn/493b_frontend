@@ -7,10 +7,6 @@ export default async function handler(req, res) {
     // Use environment variable for backend URL, fallback to localhost for development
     const backendUrl = process.env.BACKEND_URL || 'http://localhost:8000';
     
-    // Debug logging
-    console.log('Backend URL:', backendUrl);
-    console.log('Request body:', req.body);
-    
     // Forward the request to your backend
     const response = await fetch(`${backendUrl}/chat`, {
       method: 'POST',
@@ -28,9 +24,11 @@ export default async function handler(req, res) {
     res.status(200).json(data);
   } catch (error) {
     console.error('Error forwarding request to backend:', error);
+    console.error('Backend URL was:', process.env.BACKEND_URL || 'http://localhost:8000');
     res.status(500).json({ 
       error: 'Failed to communicate with backend',
-      details: error.message 
+      details: error.message,
+      backendUrl: process.env.BACKEND_URL || 'http://localhost:8000'
     });
   }
 }
