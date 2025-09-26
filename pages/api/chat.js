@@ -7,6 +7,10 @@ export default async function handler(req, res) {
     // Use environment variable for backend URL, fallback to localhost for development
     const backendUrl = process.env.BACKEND_URL || 'http://localhost:8000';
     
+    // Debug logging
+    console.log('Backend URL:', backendUrl);
+    console.log('Request body:', req.body);
+    
     // Forward the request to your backend
     const response = await fetch(`${backendUrl}/chat`, {
       method: 'POST',
